@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>HREXT08 R00lz!</title>
+	<title>Michael's Fitness Buddy</title>
 	<script
 		src="https://code.jquery.com/jquery-3.3.1.js"
 		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -14,12 +14,16 @@
 	<div class="container">
 		<form action="" method="" class="form">
 			<div class="form">
-				<label for="key">Enter key: </label>
-				<input type="text" name="key" id="key" required>
+				<label for="key">Enter exercise: </label>
+				<input type="text" name="exercise" id="exercise" required>
 			</div>
 			<div class="form">
-				<label for="value">Enter value: </label>
-				<input type="text" name="value" id="value" required>
+				<label for="value">Enter set: </label>
+				<input type="text" name="set" id="set" required>
+			</div>
+			<div class="form">
+				<label for="value">Enter rep: </label>
+				<input type="text" name="rep" id="rep" required>
 			</div>
 			<div class="form">
 				<button class="button" id="btn-create" type="button">Create</button>
@@ -31,14 +35,16 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Key</th>
-					<th>Value</th>
+					<th>Exercise</th>
+					<th>Set</th>
+					<th>Rep</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>test key</td>
-					<td>test value</td>
+					<td>test exercise</td>
+					<td>test set</td>
+					<td>test rep</td>
 				</tr>
 			</tbody>
 		</table>
