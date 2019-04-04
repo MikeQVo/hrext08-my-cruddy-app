@@ -13,5 +13,5 @@ Create Read Update and Delete framework using JS
 
 ### Advanced Reqs
 - [ ] State changing styling (hover/etc)
-- [ ] corgi gif
-- [ ] cowbell sound
+- [ ] visual overhaul for forms 
+- [ ] scrollbar for key value table
