@@ -70,10 +70,10 @@ var loadLocalStorage = function () {
     console.log(values);
     arrayValues = Object.entries(arrayValues);
     console.log(arrayValues);
-    htmlString += `<tr><td>${keys[i]}</td><td>${arrayValues[0][0]}</td><td>${arrayValues[0][1]}</td></tr>`
+    htmlString += `<tr><td>${keys[i]}</td><td>${arrayValues[0][0]}</td><td>${arrayValues[0][1][0]}</td><td>${arrayValues[0][1][1]}</td></tr>`
     tableString = '';
     for(var j = 1; j < arrayValues.length; j++){
-      tableString += `<tr><td></td><td>${arrayValues[j][0]}</td><td>${arrayValues[j][1]}</td></tr>`
+      tableString += `<tr><td></td><td>${arrayValues[j][0]}</td><td>${arrayValues[j][1][0]}</td><td>${arrayValues[j][1][1]}</td></tr>`
     }
     htmlString += tableString;
   }
@@ -95,6 +95,7 @@ $(document).ready(function () {
     var key = $('#exercise').val();
     var set = $('#set').val();
     var rep = $('#rep').val();
+    var weight = $('#weight').val();
     var keyExists = localStorage.getItem(key) !== null;
 
     if (keyExists) {
@@ -102,7 +103,7 @@ $(document).ready(function () {
     } else if (key === '') {
       updateStatusLabel('invalid input!')
     }else {
-      createEntry(key, set, rep);
+      createEntry(key, set, rep, weight);
       updateStatusLabel('key created - ' + key);
     }
 
@@ -113,15 +114,16 @@ $(document).ready(function () {
     var key = $('#exercise').val();
     var set = $('#set').val();
     var rep = $('#rep').val();
+    var weight = $('#weight').val();
     var existingValue = JSON.parse(localStorage.getItem(key));
     var keyExists = existingValue !== null;
 
-    if (key === '' || set === '' || rep === '') {
+    if (key === '' || set === '' || rep === '' || weight === '') {
       updateStatusLabel('invalid input!');
     } else if (keyExists) {
-      updateEntry(key, set, rep);
-      updateStatusLabel('exercise updated - ' + key + ' (set: ' + set + ' rep: ' + rep + ')');
-    } else if (existingValue[set] === rep) {
+      updateEntry(key, set, rep, weight);
+      updateStatusLabel('exercise updated - ' + key + ' (set: ' + set + ' rep: ' + rep + ' weight: ' + weight + ')');
+    } else if (existingValue[set][0] === rep || existingValue[set][1] === weight) {
       updateStatusLabel('key not updated - that value already exists silly! xD')
     } else {
       updateStatusLabel('key doesn\'t exist, please use create button instead! :D');
@@ -167,17 +169,19 @@ PAGE CONTENT STUFF
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 ////create new entry
 //localStorage.setItem(key, value)
-var createEntry = function(key, set, rep) {
+var createEntry = function(key, set, rep, weight) {
   var values = {};
-  values[set] = rep;
+  values[set] = [rep, weight];
+  // values["weight"] = weight;
   return localStorage.setItem(key, JSON.stringify(values));
 }
 
 ////Update existing entry
 //localStorage.setItem(key, value)
-var updateEntry = function(key, set, rep) {
+var updateEntry = function(key, set, rep, weight) {
   var curValues = JSON.parse(localStorage.getItem(key));
-  curValues[set] = rep;
+  curValues[set] = [rep, weight];
+  // curValues["weight"] = weight;
   return localStorage.setItem(key, JSON.stringify(curValues));
 }
 
