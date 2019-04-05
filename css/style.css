@@ -1,54 +1,200 @@
-/*
-- [ ] UI/UX considerations (how are we going to use this)
+body{
+  margin:0;
+  background-color:#010712;
+  background-image:url(https://static.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  height:100vh;
+  overflow: hidden;
+}
+.container{
+  width:400px;
+  height:200px;
+  position:relative;
+  perspective: 1000px;
+  left:calc(50% - 200px);
+  top:calc(50vh - 100px);
+}
+.card{
+  width:100%;
+  height:100%;
+  position:absolute;
+  transform-style:preserve-3d;
+  transition:transform 1s ease;
+  cursor:pointer;
+}
+.back, .front{
+  border-radius:6px;
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+}
+.contentfront{
+  width:100%;
+  height:100%;
+  float:left;
+  transform:translatez(60px);
+  backface-visibility: hidden;
+  transform-style:preserve-3d;
+  
+}
+.contentback{
+  width:100%;
+  height:100%;
+  float:left;
+  transform:translatez(-60px);
+  backface-visibility: hidden;
+  transform-style:preserve-3d;
+  
+}
+.back{
+  transform:rotateY(180deg);
+  background-color:#232227;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.front{
+  text-transform:uppercase;
+  background-color:#232227;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.date{
+  height:100%;
+  width:130px;
+  float:left;
+  background-color:#E76642;
+  border-radius:0 6px 6px 0;
+  text-align:right;
+  padding:10px 30px;
+  box-sizing:border-box;
+  transform-style:preserve-3d;
+}
+.datecont{
+  height:100%;
+  transform:translatez(60px) scale(.9);
+}
+#date{
+  font-size:50px;
+  color:#ECECE7;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:500;
+  float:right;
+}
+#day{
+  float:right;
+  font-size:14px;
+  color:#232227;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:400;
+}
+#month{
+  float:right;
+  font-size:10px;
+  color:#232227;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:200;
+}
+.date i{
+  color:#ECECE7;
+  position:absolute;
+  bottom:10px;
+  right:0;
+}
+.date i:hover{
+  color:#232227;
+  transition:.3s ease;
+}
+.month{
+  height:100%;
+  width:270px;
+  float:left;
+  padding:20px 30px;
+  box-sizing:border-box;
+}
+.month table{
+  width:100%;
+}
+.orangeTr{
+  color:#E76642;
+}
+.whiteTr{
+  color:#ECECE7;
+  
+}
+.whiteTr th:hover{
+  color:#E76642;
+  transition:.3s ease;
+}
+.month tr{
+  height:24px;
+}
+.month th{
+  width:14%;
+  font-size:10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:400;
+}
 
-nice contrasting color pallet
-a form that doenst look like its from a circa 2001 webpage
-
-
-advanced content
-state changing styling
-*/
-
-/*
-	implement ionicons
-	<script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
-*/
-
-/*
-	FLEXBOX CONTAINER
-	guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-*/
-.container {
-	display: flex;
+.flipped{
+  transform:rotateY(-180deg);
+  /*height:400px;
+  width:200px;
+  left:calc(50% - 100px);
+  top:calc(50vh - 200px);*/
+}
+.backcontainer{
+  backface-visibility: hidden;
+  transform-style:preserve-3d;
+  width:calc(100% - 60px);
+  height:calc(100% - 40px);
+  float:left;
+  margin-left:30px;
+  margin-top:20px;
+  border-left:solid red 5px;
+  background-color:red;
+  transform:translatez(-60px) scale();
 }
 
 /*
-	TABLE STYLING 
+  Original Content
 */
-table {
-	width: 400px;
-	margin-left: 30px;
+
+#workout {
+  width: 400px;
 }
 
+.tableContainer {
+  height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 table,
 td {
     border: 1px solid #333;
+    color:#ECECE7;
 }
 
 thead,
 tfoot {
     background-color: #333;
-    color: #fff;
+    color:#ECECE7;
 }
-
 /*
-	FORM STYLING 
-	TODO: validation checking styling 
+  FORM STYLING
 */
-form.form {
-}
-
-div.form {
+.formContainer {
+  position: relative;
+  perspective: 1000px;
+  left: calc(50% - 200px);
+  top: calc(50vh - 100px);
+  margin-bottom: 10px;
 }
 
 label, input {
@@ -57,12 +203,34 @@ label, input {
 }
 
 label {
-	display: inline-block;
-    padding-right: 10px;
-    width: 80px;
-
+  display: inline-block;
+  padding-right: 10px;
+  width: 109px;
+  color: #E76642;
+  font-size: 16px;
 }
 
+/*button.button {
+  margin-right: 23px;
+  border-radius: 6px
+}
+*/
 button.button {
-	margin-right: 20px;
+  background-color: #232227;
+  border: none;
+  color: #E76642;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+button.button:hover {
+  opacity: 1;
 }
