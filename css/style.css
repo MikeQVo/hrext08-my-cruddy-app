@@ -211,6 +211,10 @@ label {
   font-family: 'Montserrat', sans-serif;
 }
 
+#statusLabel {
+  display: contents;
+}
+
 /*button.button {
   margin-right: 23px;
   border-radius: 6px
